@@ -14,7 +14,10 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('home');
+    return view('home', [
+       'name' => 'Firz',
+       'age' => '18',
+    ]);
 })->name('frontend_home');
 
 Route::get('/about', function () {
@@ -22,22 +25,13 @@ Route::get('/about', function () {
     return view('about');
 })->name('frontend_about');
 
-
-Route::middleware(['auth','auth2','auth3'])->group(function(){
-    Route::get('/dashboard', function(){return "Dashboard";});
-    Route::get('/profile', function(){return "Profile";});
-    Route::get('/photo', function(){return "Photo";});
-});
-
-Route::prefix('auth3/')->group(function(){
-    Route::get('/about', function(){return "About";});
+Route::prefix('/admin/')->group(function(){
+    Route::get('/about/{id}', function($id){return "About";});
     Route::get('/contact', function(){return "Contact";});
     Route::get('/settings', function(){return "Settings";});
 });
 
 Route::redirect('tentang', 'about');
-
-Route::resource('article', 'ArticleController');
 
 Route::fallback(function(){
     return view('fallback');
