@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\StudentController;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,12 +16,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('home', [
-       'name' => 'Firz',
-       'age' => '18',
-    ]);
-})->name('frontend_home');
+Route::get('/', [HomeController::class, 'index'])->name('frontend_home');
+Route::get('/contact', [HomeController::class, 'contact'])->name('frontend_contact');
+Route::post('/store', [HomeController::class, 'store'])->name('store');
 
 Route::get('/about', function () {
     // return view('about', ['username' => $username, 'age' => $age]);
@@ -33,6 +33,36 @@ Route::prefix('/admin/')->group(function(){
 
 Route::redirect('tentang', 'about');
 
+route::get('/store_session_data', function(){
+    // $request->session()->put('username', 'Firz');
+    session([
+        'name' => 'Firz',
+        'pass' => 'Anjay',
+        // 'liyane' => 'okeh',
+    ]);
+    session()->flash('liyane', 'siyap');
+});
+
+route::get('/clear_session_data', function(Request $request){
+        $request->session()->flush();
+});
+
 Route::fallback(function(){
     return view('fallback');
 });
+
+// Belajar Model
+Route::get('/model', [HomeController::class, 'model']);
+Route::get('/db_show', [HomeController::class, 'db_show']);
+
+//Belajar SoftDelete
+// Route::get('/student', [StudentController::class, 'student']);
+// Route::get('/delete', [StudentController::class, 'delete']);
+
+//Belajar Raw SQL Query
+Route::get('/student/create', [StudentController::class, 'create']);
+Route::get('/student/show', [StudentController::class, 'show']);
+
+//Belajar Query Builder
+Route::get('/qb/create', [StudentController::class, 'QBCreate']);
+Route::get('/qb/show', [StudentController::class, 'QBShow']);

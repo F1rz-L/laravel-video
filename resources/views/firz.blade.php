@@ -1,1 +1,1 @@
-firz
+<img src="{{ asset('favicon.ico') }}" alt="" style="width: 64px">

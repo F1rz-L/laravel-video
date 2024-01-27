@@ -17,6 +17,6 @@
 
 <br><br><br>
 
-<x-test label="Anjay"/>
-<x-test label="Password" type="password"/>
-<x-test label="Monggo" type="date"/>
+
+
+{{-- <x-test label="Anjay"/> --}}
