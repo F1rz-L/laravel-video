@@ -56,8 +56,10 @@ Route::get('/model', [HomeController::class, 'model']);
 Route::get('/db_show', [HomeController::class, 'db_show']);
 
 //Belajar SoftDelete
-// Route::get('/student', [StudentController::class, 'student']);
-// Route::get('/delete', [StudentController::class, 'delete']);
+Route::get('/eloquent/create', [StudentController::class, 'elCreate']);
+Route::get('/eloquent/show', [StudentController::class, 'elShow']);
+Route::get('/eloquent/mass', [StudentController::class, 'elMass']);
+Route::get('/eloquent/random', [StudentController::class, 'elRandom']);
 
 //Belajar Raw SQL Query
 Route::get('/student/create', [StudentController::class, 'create']);
@@ -66,3 +68,6 @@ Route::get('/student/show', [StudentController::class, 'show']);
 //Belajar Query Builder
 Route::get('/qb/create', [StudentController::class, 'QBCreate']);
 Route::get('/qb/show', [StudentController::class, 'QBShow']);
+
+//Belajar Email
+Route::get('/rando', [HomeController::class, 'rando']);

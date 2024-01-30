@@ -14,13 +14,10 @@ class StudentSeeder extends Seeder
      */
     public function run(): void
     {
-        for ($i = 0; $i < 30; $i += 1) {
+        for ($i = 0; $i < 995; $i++) {
             $faker = Factory::create();
             $obj = new Student;
-            $obj->name = $faker->name();
-            $obj->email = $faker->email();
-            $obj->role = $faker->word();
-            $obj->desc = "kosong";
+            $obj->student_name = $faker->name();
             $obj->save();
         }
     }

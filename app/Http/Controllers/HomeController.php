@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\TestMail;
 use App\Models\Student;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Mail;
 use Intervention\Image\Laravel\Facades\Image;
 
 class HomeController extends Controller
@@ -49,5 +52,22 @@ class HomeController extends Controller
     public function db_show(){
         // @dump($student_data);
         return view('db_show', ['student_data' => Student::get()]);
+    }
+
+    public function rando(){
+        // $subject = 'Testing Subject';
+        // $body = 'Testing Message';
+
+        // Mail::to('altfirz@gmail.com')->send(new TestMail($subject, $body));
+
+        // echo calculate(20);
+
+        // $all_data = Student::get();
+        $all_data = Cache::remember('school_students', 10, function(){
+            return Student::get();
+        });
+        foreach ($all_data as $item){
+            echo $item->id." - ".$item->student_name.'<br>';
+        }
     }
 }

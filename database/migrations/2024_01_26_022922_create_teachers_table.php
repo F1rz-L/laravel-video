@@ -13,9 +13,7 @@ return new class extends Migration
     {
         Schema::create('teachers', function (Blueprint $table) {
             $table->id();
-            $table->string('name', 40);
-            $table->string('role', 20);
-            $table->text('desc');
+            $table->string('teacher_name', 40)->nullable();
             $table->timestamps();
         });
     }

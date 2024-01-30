@@ -10,4 +10,8 @@ class Student extends Model
 {
     use HasFactory;
     use SoftDeletes;
+
+    // public function teacher(){
+    //     return $this->belongsToMany(Teacher::class);
+    // }
 }
